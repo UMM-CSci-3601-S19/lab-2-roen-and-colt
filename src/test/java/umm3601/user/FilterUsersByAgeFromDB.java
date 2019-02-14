@@ -16,7 +16,7 @@ public class FilterUsersByAgeFromDB {
 
   @Test
   public void filterUsersByAge() throws IOException {
-    Database db = new Database("src/main/data/users.json");
+    Database db = new Database("src/main/data/users.json", "src/main/data/todos.json" );
     User[] allUsers = db.listUsers(new HashMap<>());
 
     User[] age27Users = db.filterUsersByAge(allUsers, 27);
@@ -28,7 +28,7 @@ public class FilterUsersByAgeFromDB {
 
   @Test
   public void listUsersWithAgeFilter() throws IOException {
-    Database db = new Database("src/main/data/users.json");
+    Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("age", new String[]{"27"});
