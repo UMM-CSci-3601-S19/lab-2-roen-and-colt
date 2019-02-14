@@ -1,6 +1,7 @@
 package umm3601.user;
 
 import com.google.gson.Gson;
+import umm3601.todos.Todo;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,11 +19,16 @@ import java.util.Map;
 public class Database {
 
   private User[] allUsers;
+  private Todo[] allTodos;
 
-  public Database(String userDataFile) throws IOException {
+  public Database(String userDataFile, String todoDataFile) throws IOException {
     Gson gson = new Gson();
     FileReader reader = new FileReader(userDataFile);
+    FileReader todoreader = new FileReader(todoDataFile);
+
     allUsers = gson.fromJson(reader, User[].class);
+    allTodos = gson.fromJson(todoreader, Todo[].class);
+
   }
 
   /**
@@ -54,6 +60,15 @@ public class Database {
     // Process other query parameters here...
 
     return filteredUsers;
+  }
+
+  public Todo[] listTodos() {
+    Todo[] ListTodo = allTodos;
+
+    // Filter age if defined
+    // Process other query parameters here...
+
+    return ListTodo;
   }
 
   /**

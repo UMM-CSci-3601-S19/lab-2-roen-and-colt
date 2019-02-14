@@ -5,6 +5,7 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.Database;
 import umm3601.user.UserController;
+import umm3601.todos.TodoController;
 
 import java.io.IOException;
 
@@ -14,12 +15,14 @@ import static spark.debug.DebugScreen.*;
 public class Server {
 
   public static final String USER_DATA_FILE = "src/main/data/users.json";
+  public static final String TODO_DATA_FILE = "src/main/data/todos.json";
   private static Database userDatabase;
 
   public static void main(String[] args) {
 
     // Initialize dependencies
     UserController userController = buildUserController();
+    TodoController todoController = buildTodoController();
 
     // Configure Spark
     port(4567);
@@ -40,6 +43,9 @@ public class Server {
     get("api/users/:id", userController::getUser);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
+    // List todos
+    get("api/todos", todoController::getTodos);
+
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
@@ -69,7 +75,7 @@ public class Server {
     UserController userController = null;
 
     try {
-      userDatabase = new Database(USER_DATA_FILE);
+      userDatabase = new Database(USER_DATA_FILE,TODO_DATA_FILE);
       userController = new UserController(userDatabase);
     } catch (IOException e) {
       System.err.println("The server failed to load the user data; shutting down.");
@@ -81,6 +87,24 @@ public class Server {
     }
 
     return userController;
+  }
+
+  private static TodoController buildTodoController() {
+    TodoController TodoController = null;
+
+    try {
+      userDatabase = new Database(USER_DATA_FILE,TODO_DATA_FILE);
+      TodoController = new TodoController(userDatabase);
+    } catch (IOException e) {
+      System.err.println("The server failed to load the user data; shutting down.");
+      e.printStackTrace(System.err);
+
+      // Shut the server down
+      stop();
+      System.exit(1);
+    }
+
+    return TodoController;
   }
 
   // Enable GZIP for all responses
