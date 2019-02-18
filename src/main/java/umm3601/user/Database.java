@@ -58,15 +58,15 @@ public class Database {
       filteredUsers = filterUsersByAge(filteredUsers, targetAge);
     }
     // Process other query parameters here...
-
     return filteredUsers;
   }
 
-  public Todo[] listTodos() {
+  public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] ListTodo = allTodos;
-
-    // Filter age if defined
-    // Process other query parameters here...
+    if (queryParams.containsKey("limit")) {
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
+      ListTodo = filterTodosByMax(ListTodo, targetLimit);
+    }
 
     return ListTodo;
   }
@@ -81,6 +81,16 @@ public class Database {
    */
   public User[] filterUsersByAge(User[] users, int targetAge) {
     return Arrays.stream(users).filter(x -> x.age == targetAge).toArray(User[]::new);
+  }
+
+  public Todo[] filterTodosByMax(Todo[] todos, int targetLimit) {
+    Todo[] filteredTodos = new Todo[targetLimit];
+    for(int i=0;i<targetLimit;i++){
+      filteredTodos[i]=todos[i];
+    }
+  return filteredTodos;
+
+
   }
 
 }
