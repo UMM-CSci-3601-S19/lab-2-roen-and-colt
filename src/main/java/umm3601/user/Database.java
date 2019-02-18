@@ -84,9 +84,11 @@ public class Database {
   }
 
   public Todo[] filterTodosByMax(Todo[] todos, int targetLimit) {
-    Todo[] filteredTodos = new Todo[]{};
-    return filteredTodos;
-
+    Todo[] filteredTodos = new Todo[targetLimit];
+    for(int i=0;i<targetLimit;i++){
+      filteredTodos[i]=todos[i];
+    }
+  return filteredTodos;
 
 
   }
