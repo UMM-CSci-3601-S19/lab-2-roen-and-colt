@@ -1,5 +1,6 @@
 package umm3601.user;
 
+
 import com.google.gson.Gson;
 import umm3601.todos.Todo;
 
@@ -67,6 +68,10 @@ public class Database {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       ListTodo = filterTodosByMax(ListTodo, targetLimit);
     }
+    else if (queryParams.containsKey("string")){
+      String searchString = queryParams.get("string")[0];
+      ListTodo = filterTodosByString(ListTodo, searchString);
+    }
 
     return ListTodo;
   }
@@ -90,7 +95,17 @@ public class Database {
     }
   return filteredTodos;
 
-
+  }
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos     the list of users to filter by age
+   * @param searchString the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] filterTodosByString(Todo[] todos, String searchString){
+    return Arrays.stream(todos).filter(x -> x.body.contains(searchString)).toArray(Todo[]::new);
   }
 
 }

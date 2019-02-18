@@ -4,6 +4,6 @@ public class Todo {
   String _id;
   String owner;
   boolean status;
-  String body;
+ public String body;
   String category;
 }

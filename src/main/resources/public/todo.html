@@ -11,10 +11,14 @@
 
 <hr/>
 
-<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
+<div id="jsonDump" style="margin-top:20px"> Json will go here.</div>
 
-<label for="limit">limit:</label><input id="limit" type="text" name="limit">
-<button type="button" id="getTodosByMax"> get todos by limit</button>
+<label for="limit">Limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="getTodosByMax">Get number of todos</button>
+
+<label for="string">String:</label><input id="string" type="text" name="limit">
+<button type="button" id="getTodosByString">Search bodies by string</button>
+
 
 <script>
   window.onload = function () {
@@ -25,6 +29,9 @@
 
     element = document.getElementById('getTodosByMax');
     element.addEventListener("click", getAllTodosByMax, true);
+
+    element = document.getElementById('getTodosByString');
+    element.addEventListener("click", getTodosByString, true);
   }
 </script>
 </body>

@@ -23,6 +23,15 @@ function getAllTodosByMax() {
   });
 }
 
+
+function getTodosByString() {
+  console.log("Retrieving todos by string.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?string=" + document.getElementById("string").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.
