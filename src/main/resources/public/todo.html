@@ -13,6 +13,9 @@
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
+<label for="limit">limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="getTodosByMax"> get todos by limit</button>
+
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -20,7 +23,7 @@
     var element = document.getElementById('getAll');
     element.addEventListener("click", getAllTodos, true);
 
-    element = document.getElementById('getUsersByAge');
+    element = document.getElementById('getTodosByMax');
     element.addEventListener("click", getAllTodosByMax, true);
   }
 </script>

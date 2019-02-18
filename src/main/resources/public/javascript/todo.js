@@ -18,7 +18,7 @@ function getAllTodosByMax() {
   console.log("Getting all the todos by maximum.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/users?age=" + document.getElementById("age").value, function (returned_json) {
+  HttpThingy.get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
