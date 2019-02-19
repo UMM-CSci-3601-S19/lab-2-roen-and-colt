@@ -18,7 +18,7 @@ import static junit.framework.TestCase.assertEquals;
 public class TodoTests {
 
   @Test
-  public void filterUsersByMax() throws IOException {
+  public void filterTodosByMax() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class TodoTests {
   }
 
   @Test
-  public void filterUsersByStatus() throws IOException {
+  public void filterTodosByStatus() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
     queryParams.put("status", new String[]{"complete"});
@@ -39,7 +39,7 @@ public class TodoTests {
   }
 
   @Test
-  public void filterUsersByGrocery() throws IOException {
+  public void filterTodosByGrocery() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
     queryParams.put("category", new String[]{"groceries"});
@@ -51,7 +51,7 @@ public class TodoTests {
 
   //Multiple params
   @Test
-  public void filterUsersByMultiple() throws IOException {
+  public void filterTodosByMultiple() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
     queryParams.put("owner", new String[]{"Blanche"});
@@ -63,7 +63,7 @@ public class TodoTests {
   }
 
   @Test
-  public void filterUsersByBlanche() throws IOException {
+  public void filterTodosByBlanche() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
     queryParams.put("owner", new String[]{"Blanche"});
@@ -73,7 +73,7 @@ public class TodoTests {
   }
 
   @Test
-  public void filterUsersByString() throws IOException {
+  public void filterTodosByString() throws IOException {
     Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
     queryParams.put("string", new String[]{"Ipsum"});
@@ -81,6 +81,18 @@ public class TodoTests {
     Todo filteredUsers = completetodos[3];
     assertEquals(true, filteredUsers.body.contains("Ipsum"));
   }
+
+  @Test
+  public void filterOwnerTodosByAlphabetical() throws IOException {
+    Database db = new Database("src/main/data/users.json", "src/main/data/todos.json");
+    Map<String, String[]> queryParams = new HashMap<>();
+    queryParams.put("alphabetical", new String[]{"owner"});
+    Todo[] completetodos = db.listTodos(queryParams);
+    Todo filteredUsers = completetodos[0];
+    assertEquals(true, filteredUsers.owner.contains("Blanche")); //Checks if Blanche is the first in the filtered list
+    //Currently a stub of what it should be, as the implementation for "alphabetical owner sorting" is not in yet.
+  }
+
 }
 
 
