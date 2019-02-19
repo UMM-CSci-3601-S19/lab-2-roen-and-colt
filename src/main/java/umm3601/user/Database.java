@@ -63,6 +63,7 @@ public class Database {
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] ListTodo = allTodos;
+    Boolean status;
     if (queryParams.containsKey("limit")) {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       ListTodo = filterTodosByMax(ListTodo, targetLimit);
@@ -77,7 +78,7 @@ public class Database {
       }
       ListTodo = filterTodosByStatus(ListTodo, status);
     }
-    else if (queryParams.containsKey("string")){
+    if (queryParams.containsKey("string")){
       String searchString = queryParams.get("string")[0];
       ListTodo = filterTodosByString(ListTodo, searchString);
     }

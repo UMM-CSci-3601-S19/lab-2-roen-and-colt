@@ -16,11 +16,10 @@
 <label for="limit">Limit:</label><input id="limit" type="text" name="limit">
 <button type="button" id="getTodosByMax">Get number of todos</button>
 
-<label for="string">String:</label><input id="string" type="text" name="limit">
+<label for="string">String:</label><input id="string" type="text" name="string">
 <button type="button" id="getTodosByString">Search bodies by string</button>
-
-
-<label for="status">status:</label><input id="status" type="text" name="status">
+&nbsp;
+&nbsp;
 <button type="button" id="getTodosByComplete"> get complete todos </button>
 <button type="button" id="getTodosByIncomplete"> get incomplete todos</button>
 <script>
@@ -41,7 +40,8 @@
 
     element = document.getElementById('getTodosByIncomplete');
     element.addEventListener("click", getTodosByIncomplete, true);
+
   }
-  }
+
 </script>
 </body>
