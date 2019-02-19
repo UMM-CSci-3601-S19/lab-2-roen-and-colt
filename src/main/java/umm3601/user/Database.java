@@ -82,8 +82,11 @@ public class Database {
       String searchString = queryParams.get("string")[0];
       ListTodo = filterTodosByString(ListTodo, searchString);
     }
-
-    return ListTodo;
+    if (queryParams.containsKey("category")) {
+      String groceries = "groceries";
+      ListTodo = filterTodosByGroceries(ListTodo,groceries);
+    }
+  return ListTodo;
   }
 
   /**
@@ -112,6 +115,10 @@ public class Database {
 
   public Todo[] filterTodosByString(Todo[] todos, String searchString){
     return Arrays.stream(todos).filter(x -> x.body.contains(searchString)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByGroceries(Todo[] todos, String groceries){
+    return Arrays.stream(todos).filter(x -> x.category.contains(groceries)).toArray(Todo[]::new);
   }
 
 

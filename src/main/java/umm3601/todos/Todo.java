@@ -5,7 +5,7 @@ public class Todo {
   String owner;
   boolean status;
  public String body;
-  String category;
+ public String category;
 
   public boolean getStatus() {
     return status;

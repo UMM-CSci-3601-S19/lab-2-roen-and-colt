@@ -50,6 +50,15 @@ function getTodosByIncomplete() {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
+
+function getTodosByGrocery() {
+  console.log("Getting all the todos in the category groceries.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?category=" + "groceries", function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.

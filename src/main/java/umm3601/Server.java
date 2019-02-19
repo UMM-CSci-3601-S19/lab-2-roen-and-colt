@@ -45,6 +45,8 @@ public class Server {
     get("api/users", userController::getUsers);
     // List todos
     get("api/todos", todoController::getTodos);
+    // List todos with status
+    //get("api/todos/:status", todoController::getTodos);
 
 
     // An example of throwing an unhandled exception so you can see how the
