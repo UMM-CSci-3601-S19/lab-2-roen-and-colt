@@ -11,3 +11,17 @@ img {
   margin-right: auto;
   padding: 10px;
 }
+
+body {
+  display: flex;
+  font-size: 1.2rem;
+  line-height: 1.618;
+  max-width: 38em;
+  margin: auto;
+  color: #4a4a4a;
+  background-color: #f9f9f9;
+  padding: 13px;
+  background-color: lightcoral;
+  flex-direction: column;
+
+}

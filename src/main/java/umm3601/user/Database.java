@@ -1,5 +1,6 @@
 package umm3601.user;
 
+
 import com.google.gson.Gson;
 import umm3601.todos.Todo;
 
@@ -63,11 +64,21 @@ public class Database {
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] ListTodo = allTodos;
+    Boolean status;
     if (queryParams.containsKey("limit")) {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       ListTodo = filterTodosByMax(ListTodo, targetLimit);
     }
-
+    if (queryParams.containsKey("status")){
+      String[] statusString = queryParams.get("status");
+      if(statusString[0].equals("complete")){
+        status = true;
+      }
+      else {
+        status = false;
+      }
+      ListTodo = filterTodosByStatus(ListTodo, status);
+    }
     return ListTodo;
   }
 
@@ -89,8 +100,10 @@ public class Database {
       filteredTodos[i]=todos[i];
     }
   return filteredTodos;
+  }
 
-
+  public Todo[] filterTodosByStatus(Todo[] todos, Boolean status) {
+    return Arrays.stream(todos).filter(x -> x.getStatus() == status).toArray(Todo[]::new);
   }
 
 }

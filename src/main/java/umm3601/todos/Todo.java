@@ -6,4 +6,8 @@ public class Todo {
   boolean status;
   String body;
   String category;
+
+  public boolean getStatus() {
+    return status;
+  }
 }

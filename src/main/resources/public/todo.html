@@ -16,6 +16,9 @@
 <label for="limit">limit:</label><input id="limit" type="text" name="limit">
 <button type="button" id="getTodosByMax"> get todos by limit</button>
 
+<label for="status">status:</label><input id="status" type="text" name="status">
+<button type="button" id="getTodosByComplete"> get complete todos </button>
+<button type="button" id="getTodosByIncomplete"> get incomplete todos</button>
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -25,6 +28,12 @@
 
     element = document.getElementById('getTodosByMax');
     element.addEventListener("click", getAllTodosByMax, true);
+
+    element = document.getElementById('getTodosByComplete');
+    element.addEventListener("click", getTodosByComplete, true);
+
+    element = document.getElementById('getTodosByIncomplete');
+    element.addEventListener("click", getTodosByIncomplete, true);
   }
 </script>
 </body>
