@@ -41,6 +41,16 @@ function getTodosByIncomplete() {
   });
 }
 
+function getTodosBySubstring() {
+  console.log("Getting all the todos by substring.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?substring=" + document.getElementById("substring").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.

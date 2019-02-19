@@ -65,6 +65,11 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] ListTodo = allTodos;
     Boolean status;
+    if (queryParams.containsKey("substring")) {
+      String[] substring = queryParams.get("substring");
+      ListTodo = filterTodosBySubstring(ListTodo, substring[0]);
+      System.out.println(substring[0]);
+    }
     if (queryParams.containsKey("limit")) {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       ListTodo = filterTodosByMax(ListTodo, targetLimit);
@@ -104,6 +109,10 @@ public class Database {
 
   public Todo[] filterTodosByStatus(Todo[] todos, Boolean status) {
     return Arrays.stream(todos).filter(x -> x.getStatus() == status).toArray(Todo[]::new);
+  }
+  public Todo[] filterTodosBySubstring(Todo[] todos, String substring) {
+    return Arrays.stream(todos).filter
+      (x -> x.getBody().toLowerCase().contains(substring.toLowerCase()) == true).toArray(Todo[]::new);
   }
 
 }

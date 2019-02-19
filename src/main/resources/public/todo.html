@@ -16,9 +16,13 @@
 <label for="limit">limit:</label><input id="limit" type="text" name="limit">
 <button type="button" id="getTodosByMax"> get todos by limit</button>
 
-<label for="status">status:</label><input id="status" type="text" name="status">
+<label for="status">status:</label>
+  <input id="status" type="text" name="status">
 <button type="button" id="getTodosByComplete"> get complete todos </button>
 <button type="button" id="getTodosByIncomplete"> get incomplete todos</button>
+<label for="substring">string:</label>
+  <input id="substring" type="text" name="substring">
+<button type="button" id="getTodosBySubstring"> get todos with bodies that include a string</button>
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -34,6 +38,9 @@
 
     element = document.getElementById('getTodosByIncomplete');
     element.addEventListener("click", getTodosByIncomplete, true);
+
+    element = document.getElementById('getTodosBySubstring');
+    element.addEventListener("click", getTodosBySubstring, true);
   }
 </script>
 </body>
