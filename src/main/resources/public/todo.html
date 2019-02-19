@@ -24,6 +24,8 @@
 <button type="button" id="getTodosByIncomplete"> get incomplete todos</button>
 
 <button type="button" id="getTodosByGrocery"> get grocery todos </button>
+<button type="button" id="getTodosByBlanche"> get Blanche todos </button>
+
 
 <script>
   window.onload = function () {
@@ -44,8 +46,12 @@
     element = document.getElementById('getTodosByIncomplete');
     element.addEventListener("click", getTodosByIncomplete, true);
 
+
     element = document.getElementById('getTodosByGrocery');
     element.addEventListener("click", getTodosByGrocery, true);
+
+    element = document.getElementById('getTodosByBlanche');
+    element.addEventListener("click", getTodosByBlanche, true);
 
   }
 

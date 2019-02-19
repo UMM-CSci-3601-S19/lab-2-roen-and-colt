@@ -86,6 +86,10 @@ public class Database {
       String groceries = "groceries";
       ListTodo = filterTodosByGroceries(ListTodo,groceries);
     }
+    if (queryParams.containsKey("owner")) {
+      String Blanche = "Blanche";
+      ListTodo = filterTodosByBlanche(ListTodo,Blanche);
+    }
   return ListTodo;
   }
 
@@ -119,6 +123,10 @@ public class Database {
 
   public Todo[] filterTodosByGroceries(Todo[] todos, String groceries){
     return Arrays.stream(todos).filter(x -> x.category.contains(groceries)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByBlanche(Todo[] todos, String Blanche){
+    return Arrays.stream(todos).filter(x -> x.owner.contains(Blanche)).toArray(Todo[]::new);
   }
 
 
